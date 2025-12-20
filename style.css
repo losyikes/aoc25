@@ -1,0 +1,58 @@
+    
+    #content{
+        width:100vw;
+        height:80vh;
+        padding-top:25px;
+        margin-top:50px;
+    }
+    #visualization{
+        width:48%;
+        height:100%;
+        border: 1px solid #222;
+        border-radius: 5px;;
+        float:left;
+    }
+    #code{
+        width:48%;
+        height:100%;
+        box-sizing: border-box;
+        border: 1px solid #222;
+        border-radius: 5px;
+        float:right;
+        margin-right:20px;
+        white-space: pre;
+        padding-left:20px;
+        overflow-y: auto;
+        padding-top:0;
+        padding-bottom:20px;
+        font-family: "Fira Code", monospace;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+    }
+    #toolbarLeft{
+        width:48%;
+        height:40px;
+        float:left;
+        margin-left:20px;
+    }
+    #toolbarRight{
+        width:48%;
+        height:40px;
+        float:right;
+        margin-right:20px;
+    }
+    .toolbarBtn{
+        height:30px;
+        width:100px;
+        margin:5px;
+        border-radius:5px;
+        border:1px solid #222;
+        background-color:#eee;
+        cursor:pointer;
+    }
+    /* .codeView{
+        display:block;
+        height:100%;
+    } */
+    
