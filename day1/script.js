@@ -74,21 +74,6 @@ const  enterInput = async(inputArray) => {
     let testResult2 = document.querySelector("#testResult2");
     testResult2.innerText = "Question 2 Zero Count: " + zeroCountRule2;
 }
-const moveDial = (direction) => {
-    let dial = document.querySelector("#dial");
-    let line = document.createElement("div");
-    if(direction == "up"){
-        line.className = "dialLine upLine"
-    }
-    else if(direction == "down"){
-        line.className = "dialLine downLine"
-    }
-    else{
-        line.className = "dialLine"
-    }
-    dial.replaceChildren();
-    dial.appendChild(line);
-}
 const showOnDisplay = (number) => {
     if(number.toString().length < 2){
         setFirstDigit(0)
@@ -162,7 +147,6 @@ const resetDial = () => {
     dialLine.style.transform = `rotate(-90deg)`;
 }
 var init = async () => {
-    moveDial("center");
     createNotches();
     let codeBlock = document.querySelector(".codeView");
     codeBlock.innerHTML = await getQuestion();
