@@ -1,4 +1,6 @@
-    
+    .backLink{
+        color: white;
+    }
     #content{
         width:100vw;
         height:80vh;
@@ -8,7 +10,7 @@
     #visualization{
         width:48%;
         height:100%;
-        border: 1px solid #222;
+        border: 1px solid #888;
         border-radius: 5px;;
         float:left;
     }
@@ -16,7 +18,7 @@
         width:48%;
         height:100%;
         box-sizing: border-box;
-        border: 1px solid #222;
+        border: 1px solid #888;
         border-radius: 5px;
         float:right;
         margin-right:20px;
@@ -51,7 +53,8 @@
         margin:5px;
         border-radius:5px;
         border:1px solid #222;
-        background-color:#eee;
+        background-color:#333;
+        color: white;
         cursor:pointer;
         display: inline-block;
         align-self: flex-end;

@@ -1,11 +1,15 @@
     :root {
-    --dial-color: #222;
+    --dial-color: #888;
     --light-dial-color:#666;
-    --lighter-dial-color:#888;
+    --lighter-dial-color:#444;
     --bright-red:#ff4d4d;
     --dark-red:#b30000;
     --bright-green:#33ff33;
     --dark-green:#004d00;
+    }
+    body{
+        background: #222;
+        color: white;
     }
     #dialDisplay{
         margin-top:200px;
@@ -13,7 +17,7 @@
     #numberDisplay {
         width: 100px;
         height: 100px;
-        border: 1px solid #222;
+        border: 1px solid var(--lighter-dial-color);
         border-collapse: collapse;
         margin-top: 10px;
         margin-left: auto;
@@ -129,6 +133,8 @@
     .errorOn{
         background: var(--bright-red) !important;
     }
+    #dial{
+    }
     #dialDisplay{
         display:block;
         width:150px;
@@ -178,7 +184,7 @@
         border-radius: 50px;
         margin-top:45px;
         margin-left: 25px;
-        background:white;
+        background: var(--dial-color);
         z-index:400;
     }
     .dialLine{
@@ -188,7 +194,7 @@
         left: 50%;
         top: 50%;
         z-index:1000;
-        background: var(--lighter-dial-color);
+        background: var(--light-dial-color);
         transform-origin: left center;
         transform: rotate(-90deg);
     }
