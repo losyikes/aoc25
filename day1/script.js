@@ -7,13 +7,14 @@
 var AnimationStatus = false;
 var UseOfficialInput = false;
 var animationDelay = 20;
+var pause = 200;
 const  enterInput = async(inputArray) => {
     let startPos = 50;
     let currentPos = startPos;
     let zeroCountRule1 = 0;
     let zeroCountRule2 = 0;
-    resetDial();
-    if(AnimationStatus){    
+    if(AnimationStatus){
+        resetDial();
         rotateDial(currentPos);
         showOnDisplay(currentPos);
     }
@@ -21,7 +22,6 @@ const  enterInput = async(inputArray) => {
         let direction = input.slice(0, 1);
         let amount = input.slice(1);
         if(direction == "R"){
-            
             for(let i = 0; i < amount; i++){
                 currentPos++;
                 if(currentPos > 99){
@@ -40,19 +40,14 @@ const  enterInput = async(inputArray) => {
                     showOnDisplay(currentPos)
                     await sleep(animationDelay)
                 }
-                
             }
-            
         }
         else{
-            if(AnimationStatus){
-                //moveDial("down");
-            }
             for(let i = amount; i > 0; i--){
                 currentPos--;
-                if(currentPos < 0){
+                if(currentPos < 0)
                     currentPos = 99;
-                }
+
                 if(currentPos == 0){
                     zeroCountRule2++;
                     if(AnimationStatus){
@@ -66,28 +61,24 @@ const  enterInput = async(inputArray) => {
                     showOnDisplay(currentPos)
                     await sleep(animationDelay)
                 }
-
             }
         }
         if(currentPos == 0){
             zeroCountRule1++;
             if(AnimationStatus){
                 lightCorrectLed();
-                await sleep(200);
+                await sleep(pause);
                 shutOffLeds();
             }
-            
         }
         if(AnimationStatus){
-            // moveDial("center");
-            await sleep(animationDelay)
+            await sleep(pause);
         }
-        
     }
     let testResult1 = document.querySelector("#testResult1");
-    testResult1.innerText = "Rule 1 Zero Count: " + zeroCountRule1;
+    testResult1.innerText = "Question 1 Zero Count: " + zeroCountRule1;
     let testResult2 = document.querySelector("#testResult2");
-    testResult2.innerText = "Rule 2 Zero Count: " + zeroCountRule2;
+    testResult2.innerText = "Question 2 Zero Count: " + zeroCountRule2;
 }
 const moveDial = (direction) => {
 
