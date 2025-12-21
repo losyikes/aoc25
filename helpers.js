@@ -43,9 +43,11 @@ const getHelpers = async function(){
     }
    
 }
-const getinputView = async function(){
+const getInputView = async function(){
     let input = await fetch("input");
     let inputText = await input.text()
+        console.log(inputText);
+
     return inputText;
 }
 const getTestInputView = async function(){
@@ -53,6 +55,16 @@ const getTestInputView = async function(){
     let inputText = await input.text()
     console.log(inputText);
     return inputText;
+}
+const getQuestion = async function(){
+    let question = await fetch("./question1");
+    let questionText = (await question.text()).trim();
+    return questionText;
+}
+const getQuestion2 = async function(){
+    let question = await fetch("./question2");
+    let questionText = (await question.text()).trim();
+    return questionText;
 }
 const sleep = async function (msec) {
     return new Promise(resolve => setTimeout(resolve, msec));
@@ -100,9 +112,15 @@ const setCodeView = async(code) => {
         console.log(await getHelpers());
     }
     else if(code == "input"){
-        codeBlock.innerHTML = await getinputView();
+        codeBlock.innerHTML = await getInputView();
     }
     else if(code == "testinput"){
         codeBlock.innerHTML = await getTestInputView();
+    }
+    else if(code == "question"){
+        codeBlock.innerHTML = await getQuestion();
+    }
+    else if(code == "question2"){
+        codeBlock.innerHTML = await getQuestion2();
     }
 }

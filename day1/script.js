@@ -4,17 +4,24 @@
     
 //     await enterInput(inputArray);
 // }
+var AnimationStatus = false;
+var UseOfficialInput = false;
+var animationDelay = 20;
 const  enterInput = async(inputArray) => {
-    console.log(inputArray)
     let startPos = 50;
     let currentPos = startPos;
     let zeroCountRule1 = 0;
     let zeroCountRule2 = 0;
+    resetDial();
+    if(AnimationStatus){    
+        rotateDial(currentPos);
+        showOnDisplay(currentPos);
+    }
     for(let input of inputArray){
         let direction = input.slice(0, 1);
         let amount = input.slice(1);
         if(direction == "R"){
-            moveDial("up");
+            
             for(let i = 0; i < amount; i++){
                 currentPos++;
                 if(currentPos > 99){
@@ -22,17 +29,25 @@ const  enterInput = async(inputArray) => {
                 }
                 if(currentPos == 0){
                     zeroCountRule2++;
-                    lightCorrectLed();
-                    await sleep(200);
-                    shutOffLeds();
+                    if(AnimationStatus){
+                        lightCorrectLed();
+                        await sleep(animationDelay);
+                        shutOffLeds();
+                    }
                 }
-                showOnDisplay(currentPos)
-                await sleep(50)
+                if(AnimationStatus){
+                    rotateDial(1);
+                    showOnDisplay(currentPos)
+                    await sleep(animationDelay)
+                }
+                
             }
             
         }
         else{
-            moveDial("down");
+            if(AnimationStatus){
+                //moveDial("down");
+            }
             for(let i = amount; i > 0; i--){
                 currentPos--;
                 if(currentPos < 0){
@@ -40,23 +55,34 @@ const  enterInput = async(inputArray) => {
                 }
                 if(currentPos == 0){
                     zeroCountRule2++;
-                    lightCorrectLed();
-                    await sleep(200);
-                    shutOffLeds();
+                    if(AnimationStatus){
+                        lightCorrectLed();
+                        await sleep(animationDelay);
+                        shutOffLeds();
+                    }
                 }
-                showOnDisplay(currentPos)
-                await sleep(50)
+                if(AnimationStatus){
+                    rotateDial(-1);
+                    showOnDisplay(currentPos)
+                    await sleep(animationDelay)
+                }
 
             }
         }
         if(currentPos == 0){
             zeroCountRule1++;
-            lightCorrectLed();
-            await sleep(200);
-            shutOffLeds();
+            if(AnimationStatus){
+                lightCorrectLed();
+                await sleep(200);
+                shutOffLeds();
+            }
+            
         }
-        moveDial("center");
-        await sleep(200)
+        if(AnimationStatus){
+            // moveDial("center");
+            await sleep(animationDelay)
+        }
+        
     }
     let testResult1 = document.querySelector("#testResult1");
     testResult1.innerText = "Rule 1 Zero Count: " + zeroCountRule1;
@@ -64,7 +90,6 @@ const  enterInput = async(inputArray) => {
     testResult2.innerText = "Rule 2 Zero Count: " + zeroCountRule2;
 }
 const moveDial = (direction) => {
-        console.log("setting dial to " + direction);
 
     let dial = document.querySelector("#dial");
     let line = document.createElement("div");
@@ -79,7 +104,6 @@ const moveDial = (direction) => {
     }
     dial.replaceChildren();
     dial.appendChild(line);
-    console.log("set dial to " + direction);
 }
 const showOnDisplay = (number) => {
     if(number.toString().length < 2){
@@ -96,8 +120,7 @@ const showOnDisplay = (number) => {
 const setFirstDigit = (number) => {
     var firstDigit = document.querySelector("#firstDigit");
     firstDigit.className = getNumberClass(number);
-    }
-
+}
 const setSecondDigit = (number) => {
     var setSecondDigit = document.querySelector("#secondDigit");
     setSecondDigit.className = getNumberClass(number);
@@ -116,13 +139,52 @@ const shutOffLeds = () => {
     let errorLed = document.querySelector("#error");
     errorLed.className = "led";
 }
+const toggleAnimation = (checkBox) => {
+    AnimationStatus = checkBox.checked;
+}
+const toggleInput = (checkBox) => {
+    UseOfficialInput = checkBox.checked;
+}
+const createNotches = () =>{
+    let notchLines = document.querySelector("#notchLines");
+    for(let i = 0; i < 100; i++){
+        let notchline = document.querySelector(".notchLine2").cloneNode();
+        if(i %5 == 0){
+            notchline.className = "notchLine";
+        }
+        notchline.style.transform = `rotate(${(i * (360/100))}deg)`;
+        notchLines.appendChild(notchline);
+    }
+}
+const rotateDial = (degree) => {
+    let dialLine = document.querySelector(".dialLine");
+    let style = window.getComputedStyle(dialLine);
+    var currentTransform = style.getPropertyValue("-webkit-transform") ||
+         style.getPropertyValue("-moz-transform") ||
+         style.getPropertyValue("-ms-transform") ||
+         style.getPropertyValue("-o-transform") ||
+         style.getPropertyValue("transform");
+    let currentRotation = parseFloat(currentTransform.match(/rotate\(\s*([+-]?\d+(?:\.\d+)?)\s*deg\s*\)/i)?.[1]) || 0;
+    degree = currentRotation + degree * (360/100);
+    dialLine.style.transform = `rotate(${degree}deg)`;
+}
+const resetDial = () => {
+    let dialLine = document.querySelector(".dialLine");
+    dialLine.style.transform = `rotate(-90deg)`;
+}
 var init = async () => {
     moveDial("center");
+    createNotches();
     let codeBlock = document.querySelector(".codeView");
-    codeBlock.innerHTML = await getScript();
+    codeBlock.innerHTML = await getQuestion();
 }
 const runDay1 = async() => {
-    const inputArray = await getTestInput()
+    if(UseOfficialInput){
+        var inputArray = await getInput()
+    }
+    else{
+        var inputArray = await getTestInput()
+    }
     await enterInput(inputArray);
 }
 init();

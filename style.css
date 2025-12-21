@@ -20,21 +20,22 @@
         border-radius: 5px;
         float:right;
         margin-right:20px;
-        white-space: pre;
         padding-left:20px;
         overflow-y: auto;
         padding-top:0;
         padding-bottom:20px;
+        padding-right:50px;
         font-family: "Fira Code", monospace;
         font-optical-sizing: auto;
         font-weight: 400;
         font-style: normal;
+        white-space: pre-wrap;
     }
     #toolbarLeft{
         width:48%;
         height:40px;
         float:left;
-        margin-left:20px;
+        
     }
     #toolbarRight{
         width:48%;
@@ -50,6 +51,11 @@
         border:1px solid #222;
         background-color:#eee;
         cursor:pointer;
+    }
+    #results{
+        width:100%;
+        text-align:center;
+        margin-top:50px;
     }
     /* .codeView{
         display:block;
