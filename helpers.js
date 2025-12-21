@@ -98,14 +98,19 @@ const getNumberClass = (number) => {
 const setCodeView = async(code) => {
     let codeBlock = document.querySelector(".codeView");
     console.log(code);
-    if(code == "js"){
+    if(code == "script.js"){
         codeBlock.innerHTML = await getScript();
     }
-    else if(code == "html"){
+    else if(code == "index.html"){
         codeBlock.innerText = await getHtml();
     }
-    else if(code == "css"){
+    else if(code == "style.css"){
         codeBlock.innerHTML = await getCss();
+    }
+    else if(code == "day1.css"){
+        let day1css = await fetch("./day1.css");
+        let day1cssText = await day1css.text()
+        codeBlock.innerHTML = day1cssText;
     }
     else if(code == "helpers.js"){
         codeBlock.innerHTML = await getHelpers();

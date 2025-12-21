@@ -1,9 +1,3 @@
-
-
-// const runDay1 = async() => {
-    
-//     await enterInput(inputArray);
-// }
 var AnimationStatus = false;
 var UseOfficialInput = false;
 var animationDelay = 20;
@@ -81,7 +75,6 @@ const  enterInput = async(inputArray) => {
     testResult2.innerText = "Question 2 Zero Count: " + zeroCountRule2;
 }
 const moveDial = (direction) => {
-
     let dial = document.querySelector("#dial");
     let line = document.createElement("div");
     if(direction == "up"){
@@ -105,8 +98,6 @@ const showOnDisplay = (number) => {
         setFirstDigit(number.toString().split('').map(Number)[0])
         setSecondDigit(number.toString().split('').map(Number)[1])
     }
-
-
 }
 const setFirstDigit = (number) => {
     var firstDigit = document.querySelector("#firstDigit");
@@ -151,10 +142,10 @@ const rotateDial = (degree) => {
     let dialLine = document.querySelector(".dialLine");
     let style = window.getComputedStyle(dialLine);
     var currentTransform = style.getPropertyValue("-webkit-transform") ||
-         style.getPropertyValue("-moz-transform") ||
-         style.getPropertyValue("-ms-transform") ||
-         style.getPropertyValue("-o-transform") ||
-         style.getPropertyValue("transform");
+        style.getPropertyValue("-moz-transform") ||
+        style.getPropertyValue("-ms-transform") ||
+        style.getPropertyValue("-o-transform") ||
+        style.getPropertyValue("transform");
     let currentRotation = parseFloat(currentTransform.match(/rotate\(\s*([+-]?\d+(?:\.\d+)?)\s*deg\s*\)/i)?.[1]) || 0;
     degree = currentRotation + degree * (360/100);
     dialLine.style.transform = `rotate(${degree}deg)`;
@@ -178,4 +169,5 @@ const runDay1 = async() => {
     }
     await enterInput(inputArray);
 }
+
 init();
