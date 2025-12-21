@@ -56,6 +56,11 @@
         display: inline-block;
         align-self: flex-end;
     }
+    .toolbarLabel{
+        display: inline-block;
+        align-self: flex-end;
+        margin:5px;
+    }
     #results{
         width:100%;
         text-align:center;
