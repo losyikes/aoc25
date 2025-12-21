@@ -1,4 +1,13 @@
-#dialDisplay{
+    :root {
+    --dial-color: #222;
+    --light-dial-color:#666;
+    --lighter-dial-color:#888;
+    --bright-red:#ff4d4d;
+    --dark-red:#b30000;
+    --bright-green:#33ff33;
+    --dark-green:#004d00;
+    }
+    #dialDisplay{
         margin-top:200px;
     }
     #numberDisplay {
@@ -15,7 +24,7 @@
     #firstDigit {
         width: 49px;
         height: 100px;
-        border: 1px solid #222;
+        border: 1px solid var(--dial-color);
         margin-top: -1px;
         margin-left: -1px;
         margin-right: -1px;
@@ -25,7 +34,7 @@
     #secondDigit {
         width: 49px;
         height: 100px;
-        border: 1px solid #222;
+        border: 1px solid var(--dial-color);
         margin-top: -1px;
         margin-right: -1px;
         margin-left: -1px;
@@ -100,26 +109,25 @@
     .led{
         width:50px;
         height:50px;
-        /* border:1px solid #222; */
         border-radius: 25px;
         display:block;
     }
     #correct{
-        background: #004d00;
+        background: var(--dark-green);
         float:left;
         margin-left:10px;
     }
     .correctOn{
-        background: #33ff33 !important;
+        background: var(--bright-green) !important;
 
     }
     #error{
-        background: #b30000;
+        background: var(--dark-red);
         float:right;
         margin-right:10px;
     }
     .errorOn{
-        background: #ff4d4d !important;
+        background: var(--bright-red) !important;
     }
     #dialDisplay{
         display:block;
@@ -132,7 +140,7 @@
         position: absolute;
         width:150px;
         height:150px;
-        border: 1px solid #666;
+        border: 1px solid var(--light-dial-color);
         border-radius: 75px;
         margin-top:20px;
         margin-left: auto;
@@ -143,10 +151,10 @@
     .notchLine{
         position: absolute;
         width: 48%;
-        height: 2px;
+        height: 1px;
         left: 50%;
         top: 50%;
-        background: #888;
+        background: var(--light-dial-color);
         z-index:3;
         transform-origin: left center;
         transform: rotate(-90deg);
@@ -157,7 +165,7 @@
         height: 1px;
         left: 50%;
         top: 50%;
-        background: #888;
+        background: var(--lighter-dial-color);
         z-index:3;
         transform-origin: left center;
         transform: rotate(-90deg);
@@ -166,7 +174,7 @@
         position: absolute;
         width:100px;
         height:100px;
-        border: 1px solid #666;
+        border: 1px solid var(--light-dial-color);
         border-radius: 50px;
         margin-top:45px;
         margin-left: 25px;
@@ -180,16 +188,16 @@
         left: 50%;
         top: 50%;
         z-index:1000;
-        background: #888;
+        background: var(--lighter-dial-color);
         transform-origin: left center;
         transform: rotate(-90deg);
     }
     .upLine{
-        background: #888;
+        background: var(--lighter-dial-color);
         transform: rotate(-60deg);
     }
     .downLine{
-        background: #888;
+        background: var(--lighter-dial-color);
         transform: rotate(-120deg);
     }
    
