@@ -146,7 +146,14 @@ const rotateDial = (degree) => {
         style.getPropertyValue("-ms-transform") ||
         style.getPropertyValue("-o-transform") ||
         style.getPropertyValue("transform");
-    let currentRotation = parseFloat(currentTransform.match(/rotate\(\s*([+-]?\d+(?:\.\d+)?)\s*deg\s*\)/i)?.[1]) || 0;
+    let currentRotation = 0;
+    if(!currentTransform.startsWith("matrix")){
+        currentRotation = parseFloat(currentTransform.match(/rotate\(\s*([+-]?\d+(?:\.\d+)?)\s*deg\s*\)/i)?.[1]) || 0;
+    }
+    else{
+        let matrix = new DOMMatrixReadOnly(currentTransform);
+        currentRotation = Math.atan2(matrix.b, matrix.a) * 180 / Math.PI;
+    }
     degree = currentRotation + degree * (360/100);
     dialLine.style.transform = `rotate(${degree}deg)`;
 }
