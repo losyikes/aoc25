@@ -2,6 +2,7 @@
     --dial-color: #888;
     --light-dial-color:#666;
     --lighter-dial-color:#444;
+    --even-lighter-dial-color:#333;
     --bright-red:#ff4d4d;
     --dark-red:#b30000;
     --bright-green:#33ff33;
@@ -24,6 +25,12 @@
         margin-right:auto;
         background: url("./../ressources/numberGradient25resized.png");
         display:block;
+    }
+    #numberDisplayBackground {
+            background: white;
+            width: 100px;
+            height: 100px;
+            position: absolute;
     }
     #firstDigit {
         width: 49px;
@@ -133,8 +140,7 @@
     .errorOn{
         background: var(--bright-red) !important;
     }
-    #dial{
-    }
+    
     #dialDisplay{
         display:block;
         width:150px;
@@ -152,6 +158,8 @@
         margin-left: auto;
         margin-right:auto;
         z-index:1;
+        background:#444;
+
     }
     
     .notchLine{
@@ -160,7 +168,7 @@
         height: 1px;
         left: 50%;
         top: 50%;
-        background: var(--light-dial-color);
+        background: #999;
         z-index:3;
         transform-origin: left center;
         transform: rotate(-90deg);
@@ -171,7 +179,7 @@
         height: 1px;
         left: 50%;
         top: 50%;
-        background: var(--lighter-dial-color);
+        background: var(--dial-color);
         z-index:3;
         transform-origin: left center;
         transform: rotate(-90deg);
@@ -194,7 +202,7 @@
         left: 50%;
         top: 50%;
         z-index:1000;
-        background: var(--light-dial-color);
+        background: var(--lighter-dial-color);
         transform-origin: left center;
         transform: rotate(-90deg);
     }
