@@ -1,7 +1,4 @@
-var AnimationStatus = false;
-var UseOfficialInput = false;
-var animationDelay = 20;
-var pause = 200;
+
 const  enterInput = async(inputArray) => {
     let startPos = 50;
     let currentPos = startPos;
@@ -109,9 +106,7 @@ const shutOffLeds = () => {
 const toggleAnimation = (checkBox) => {
     AnimationStatus = checkBox.checked;
 }
-const toggleInput = (checkBox) => {
-    UseOfficialInput = checkBox.checked;
-}
+
 const createNotches = () =>{
     let notchLines = document.querySelector("#notchLines");
     for(let i = 0; i < 100; i++){

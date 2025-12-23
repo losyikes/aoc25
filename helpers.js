@@ -1,3 +1,8 @@
+var AnimationStatus = false;
+var UseOfficialInput = false;
+var animationDelay = 20;
+var pause = 200;
+
 const getInput = async function(){
     let input = await fetch("./input")
     let inputText = await input.text()
@@ -6,7 +11,12 @@ const getInput = async function(){
     let inputArray = inputvars.split(",")
     return inputArray
 }
-
+const getInputFromCsv = async function(){
+    let input = await fetch("./input")
+    let inputText = await input.text()
+    let inputArray = inputText.split(",")
+    return inputArray
+}
 const getTestInput = async function(){
     let input = await fetch("./testInput")
     let inputText = await input.text()
@@ -15,7 +25,9 @@ const getTestInput = async function(){
     let inputArray = inputvars.split(",")
     return inputArray
 }
-
+const toggleInput = (checkBox) => {
+    UseOfficialInput = checkBox.checked;
+}
 const getScript = async function(){
     let script = await fetch("script.js");
     let scriptText = await script.text()
@@ -46,14 +58,11 @@ const getHelpers = async function(){
 const getInputView = async function(){
     let input = await fetch("input");
     let inputText = await input.text()
-        console.log(inputText);
-
     return inputText;
 }
 const getTestInputView = async function(){
     let input = await fetch("testInput");
     let inputText = await input.text()
-    console.log(inputText);
     return inputText;
 }
 const getQuestion = async function(){
@@ -97,7 +106,6 @@ const getNumberClass = (number) => {
 }
 const setCodeView = async(code) => {
     let codeBlock = document.querySelector(".codeView");
-    console.log(code);
     if(code == "script.js"){
         codeBlock.innerHTML = await getScript();
     }
@@ -128,4 +136,7 @@ const setCodeView = async(code) => {
     else if(code == "question2"){
         codeBlock.innerHTML = await getQuestion2();
     }
+}
+const arrayIsAllEqual = (arr) => {
+    return arr.every(val => val === arr[0]);
 }

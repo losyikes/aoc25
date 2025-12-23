@@ -4,40 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 2"./../helpers.js" type="text/javascript"></script>
-    <script src="script.js" type="text/javascript"></script>
-    <!-- <link rel="icon" href="data:,"> -->
+    <title>Day 2</title>
+    <script src="./../helpers.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="./../style.css" />
     <a href="../index.html">Back</a>
 </head>
 <body>
     <div id="content">
+         <div id="toolbarLeft">
+            <button class ="toolbarBtn" onclick="runDay2()">Run Day 2</button>
+            <label class="toolbarLabel"><input type="checkbox" class="toolbarCheckbox" id="toggleAnimation" onchange="toggleAnimation(this)">Show animation</label>
+            <label class="toolbarLabel"><input type="checkbox" class="toolbarCheckbox"id="toggleInput" onchange="toggleInput(this)">Use official input</label>
+        </div>
+        <div id="toolbarRight">
+            <button class ="toolbarBtn" onclick="setCodeView('question')">Question</button>
+            <button class ="toolbarBtn" onclick="setCodeView('question2')">Question 2</button>
+            <button class ="toolbarBtn" onclick="setCodeView('script.js')">script.js</button>
+            <button class ="toolbarBtn" onclick="setCodeView('index.html')">index.html</button>
+            <button class ="toolbarBtn" onclick="setCodeView('helpers.js')">Helpers.js</button>
+            <button class ="toolbarBtn" onclick="setCodeView('style.css')">style.css</button>
+            <!-- <button class ="toolbarBtn" onclick="setCodeView('day1.css')">day1.css</button> -->
+            <button class ="toolbarBtn" onclick="setCodeView('input')">Input</button>
+            <button class ="toolbarBtn" onclick="setCodeView('testinput')">Test Input</button>
+        </div>
         <div id="visualization"></div>
-        <div id="code"><pre><code class="codeView"></code></pre></div>
+        <div id="code"><code class="codeView"></code></div>
     </div>
 </body>
-<style>
-    #content{
-        width:100vw;
-        height:80vh;
-        padding-top:25px;
-    }
-    #visualization{
-        width:48%;
-        height:100%;
-        border: 1px solid #222;
-        border-radius: 5px;;
-        float:left;
-    }
-    #code{
-        width:48%;
-        height:100%;
-        border: 1px solid #222;
-        border-radius: 5px;
-        float:right;
-        margin-right:20px;
-        white-space: pre;
-        padding-left:20px;
-    }
-</style>
+    <script src="script.js" type="text/javascript"></script>
 
 </html>
