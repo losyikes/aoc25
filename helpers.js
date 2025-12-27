@@ -143,3 +143,6 @@ const arrayIsAllEqual = (arr) => {
 const sortArray = (arr) => {
     return arr.sort((a,b) => {return a-b})
 }
+const sortObjects = (arr) => {
+    return arr.sort((a,b) => {return a.index - b.index})
+}

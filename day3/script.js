@@ -7,13 +7,46 @@ const runDay3 = async() => {
     else{
         var inputArray = await getTestInput()
     }
+     inputArray = ["234234234234278"]
     let sanitizedInput = sanitizeInput(inputArray);
-    let question1Values = getMax2Values(sanitizedInput);
-    console.log(question1Values.reduce((a,b) => { return a+b}))
-
+    // let question1Values = getMax2Values(sanitizedInput);
+    let question2Values = getMax12Values(sanitizedInput);
+    // console.log(question1Values.reduce((a,b) => { return a+b}))
+    console.log(question2Values)
 }
-const remove2MinValues = (input) => {
+const getMax12Values = (input) => {
+    let returnValues = []
     let values = [];
+    let amount = 12;
+    for(let line of input){
+        let currentValue = ""
+        let lineObject = [...line].map(Number)
+        console.log(lineObject)
+        for(let i = 0; i < amount;i++){
+            var maxObject = Math.max(...lineObject);
+            var maxObjectIndex = lineObject.indexOf(maxObject);
+            values.push({index: maxObjectIndex, value: maxObject })
+            lineObject = removeItem(lineObject, maxObject)
+            console.log(...lineObject)
+            console.log(...values)
+        }
+        
+        values = sortObjects(values)
+        console.log(...values)
+        let currentValues =values.map(a => a.value)
+        currentValue = currentValues.join("")
+        returnValues.push(parseInt(currentValue))
+        values = []
+        // console.log(currentValue)
+    }
+    return returnValues;
+}
+function removeItem(arr, value) {
+  var index = arr.indexOf(value);
+  if (index > -1) {
+    arr[index] = 0;
+  }
+  return arr;
 }
 const getMax2Values = (input) =>{
     let values = []
@@ -34,7 +67,6 @@ const getMax2Values = (input) =>{
             maxPos = line.indexOf(maxValue);
             remainingLine = line.slice(maxPos)
             secondValue = Math.max(...remainingLine)
-
         }
         let combinedValue = maxValue + "" + secondValue
         values.push(parseInt(combinedValue))
@@ -51,7 +83,6 @@ const sanitizeInput = (inputArray) => {
 }
 var init = async () => {
     let codeBlock = document.querySelector(".codeView");
-    console.log(codeBlock)
     codeBlock.innerHTML = await getQuestion();
 }
 init()
