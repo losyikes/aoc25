@@ -140,3 +140,6 @@ const setCodeView = async(code) => {
 const arrayIsAllEqual = (arr) => {
     return arr.every(val => val === arr[0]);
 }
+const sortArray = (arr) => {
+    return arr.sort((a,b) => {return a-b})
+}
